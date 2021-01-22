@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
 use App\Models\Account;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,7 @@ class AccountController extends Controller
      */
     public function store(CreateAccountRequest $request)
     {
-        $fields = $request->validated();
-        Account::create($fields);
+        Account::create($request->validated());
         return response()->json(['msg' => 'registro creado con exito']);
     }
 
@@ -74,9 +74,14 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAccountRequest $request, $id)
     {
-        //
+        $account = Account::find($id);
+        if(!$account){
+            return response()->json(['msg' => 'registro no encontrado']);
+        }
+        $account->update($request->validated());
+        return response()->json(['msg' => 'registro actualizado correctamente']);
     }
 
     /**
