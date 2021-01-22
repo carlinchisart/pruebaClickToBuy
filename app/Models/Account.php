@@ -10,4 +10,9 @@ class Account extends Model
     use HasFactory;
     protected $fillable =['nombre','email','telefono'];
     protected $hidden = ['created_at','updated_at'];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
