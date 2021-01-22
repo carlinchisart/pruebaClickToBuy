@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOrderRequest;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -32,9 +34,12 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOrderRequest $request)
     {
-        //
+        $fields = $request->validated();
+        $fields['total'] = $request->cantidad * $request->valor;
+        $order = Order::create($fields);
+        return response()->json(['msg' => 'pedido creado satisfactoriamente']);
     }
 
     /**
