@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::resource('accounts',AccountController::class);
+Route::resource('accounts',AccountController::class)->only(['index','store','show','update','destroy']);

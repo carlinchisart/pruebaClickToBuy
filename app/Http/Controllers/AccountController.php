@@ -49,7 +49,11 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $account = Account::find($id);
+        if($account){
+            return response()->json(['msg' => 'registro encontrado', 'data' => $account]);
+        }
+        return response()->json(['msg' => 'Registro no encontrado']);
     }
 
     /**
