@@ -92,6 +92,9 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
+        if($account->orders()->count() > 0){
+            return response()->json(['msg' => 'No se puede borrar la cuenta, tiene pedidos asociados']);
+        }
         $account->delete();
         return response()->json(['msg' => 'registro eliminado correctamente']);
     }
