@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration
             $table->timestamps();
             $table->string('nombre',80);
             $table->string('email',50);
-            $table->string('telefono',15);
+            $table->string('telefono',20);
         });
     }
 

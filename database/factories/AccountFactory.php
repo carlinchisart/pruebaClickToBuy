@@ -22,7 +22,9 @@ class AccountFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->name,
+            'email' => $this->faker->email,
+            'telefono' => $this->faker->phoneNumber
         ];
     }
 }
