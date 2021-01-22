@@ -16,6 +16,15 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('account_id')
+                    ->references('id')
+                    ->on('accounts')
+                    ->onDelete('RESTRICT');
+            $table->string('producto',255);
+            $table->integer('cantidad');
+            $table->double('valor');
+            $table->double('total');
+
         });
     }
 

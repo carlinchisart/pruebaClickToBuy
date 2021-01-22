@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Account;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,8 +22,16 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        $account = Account::inRandomOrder()->get()->random();
+        $cantidad = rand(1,15);
+        $valor = rand(500,90000);
+        $total = $cantidad * $valor;
         return [
-            //
+            'account_id' => $account->id,
+            'producto'   => $this->faker->word,
+            'cantidad'   => $cantidad,
+            'valor'      => $valor,
+            'total'      => $total
         ];
     }
 }
