@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class CreatedOrderEvent implements ShouldBroadcast
 {
@@ -34,6 +35,7 @@ class CreatedOrderEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        $this->order->load('account');
         return new Channel('order');
     }
 }
